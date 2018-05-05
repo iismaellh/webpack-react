@@ -1,5 +1,5 @@
 {
-  "name": "webpack-react",
+  "name": "webpack-react-boilerplate",
   "version": "4.0.0",
   "description": "Plain Webpack 4 + React Boilerplate with Babel, SASS and lodash",
   "author": "Ismael Herrera",
@@ -7,8 +7,8 @@
   "homepage": "https://github.com/randomtu/webpack-react",
   "scripts": {
     "dev": "cross-env NODE_ENV=dev webpack-dev-server --progress --mode development --config webpack.config.dev.js",
-    "build": "webpack -p --progress --mode production --config webpack.config.build.js",
-    "heroku-postbuild": "webpack -p --mode production --config webpack.config.build.js --progress"
+    "build": "webpack --progress --mode production --config webpack.config.build.js",
+    "heroku-postbuild": "webpack --progress --mode production --config webpack.config.build.js"
   },
   "repository": {
     "type": "git",
@@ -38,9 +38,10 @@
     "sass-loader": "7.0.1",
     "style-loader": "0.21.0",
     "url-loader": "1.0.1",
-    "webpack": "4.7.0",
+    "webpack": "^4.7.0",
     "webpack-cli": "2.1.2",
     "webpack-dev-server": "3.1.4",
-    "webpack-merge": "4.1.2"
+    "webpack-merge": "4.1.2",
+    "webpack-react": "^0.6.0"
   }
 }
