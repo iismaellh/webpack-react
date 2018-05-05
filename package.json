@@ -1,17 +1,17 @@
 {
-  "name": "webpack-boilerplate",
+  "name": "webpack-react",
   "version": "4.0.0",
-  "description": "Plain webpack 4 Boilerplate with Babel, SASS and lodash on board",
-  "author": "Christoph von Gellhorn",
+  "description": "Plain Webpack 4 + React Boilerplate with Babel, SASS and lodash",
+  "author": "Ismael Herrera",
   "license": "MIT",
-  "homepage": "https://github.com/cvgellhorn/webpack-boilerplate",
+  "homepage": "https://github.com/randomtu/webpack-react",
   "scripts": {
     "dev": "cross-env NODE_ENV=dev webpack-dev-server --progress --mode development --config webpack.config.dev.js",
     "build": "webpack -p --progress --mode production --config webpack.config.build.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://cvgellhorn@github.com/cvgellhorn/webpack-boilerplate.git"
+    "url": "https://github.com/randomtu/webpack-react.git"
   },
   "dependencies": {
     "lodash": "4.17.10",
