@@ -81,14 +81,28 @@ module.exports = {
                             sourceMap: IS_DEV,
                             includePaths: [dirAssets]
                         }
-                    }
+                    },
+                    { 
+                        loader: 'postcss-loader',
+                        options: {
+                            ident: 'postcss',
+                            plugins: () => [
+                                autoprefixer({
+                                    browsers: [
+                                       "> 1%",
+                                       "last 2 versions"
+                                    ]
+                                })
+                            ]
+                        }
+                     }
                 ]
             },
 
             // IMAGES
             {
                 test: /\.(jpe?g|png|gif)$/,
-                loader: 'file-loader',
+                loader: 'url-loader?limit=8000&name=images/[name].[ext]',
                 options: {
                     name: '[path][name].[ext]'
                 }
