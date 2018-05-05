@@ -33,10 +33,22 @@ module.exports = {
             IS_DEV: IS_DEV
         }),
 
+        // old html template
         new HtmlWebpackPlugin({
             template: path.join(__dirname, 'src/index.html'),
             title: appHtmlTitle
         })
+
+        // convert to ejs
+        // new HtmlWebpackPlugin({
+        //     template: path.join(__dirname, 'src/index.html'),
+        //     minify: {
+        //         removeComments: true,
+        //         collapseWhitespace: true,
+        //         removeAttributeQuotes: true
+        //     },
+        //     chunksSortMode: 'dependency'
+        // })
     ],
     module: {
         rules: [

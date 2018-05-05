@@ -10,7 +10,7 @@
     "build": "webpack --progress --mode production --config webpack.config.build.js",
     "local": "webpack-dev-server --open --mode development",
     "heroku-postbuild": "webpack --progress --mode production --config webpack.config.build.js",
-    "start": "npm run local"
+    "start": "npm react-scripts start"
   },
   "repository": {
     "type": "git",
