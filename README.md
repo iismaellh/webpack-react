@@ -30,7 +30,8 @@ $ npm run build
 ```
 
 ## Credits
-Based on: https://github.com/cvgellhorn/webpack-boilerplate
+Christoph von Gellhorn: https://github.com/cvgellhorn/webpack-boilerplate
+Maximilian Schwarzmüller: https://github.com/mschwarzmueller
 
 ## Resources
 
