@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Link, Route } from 'react-router-dom';
 
-import Users from './containers/Users';
+import Another from './containers/Another';
 import asyncComponent from './hoc/asyncComponent';
 
-const AsyncPizza = asyncComponent(() => {
-    return import('./containers/Pizza.js');
+const AsyncGeneric = asyncComponent(() => {
+    return import('./containers/Generic.js');
 });
 
 class App extends Component {
@@ -13,11 +13,11 @@ class App extends Component {
         return (
             <div>
                 <div>
-                    <Link to="/">Users</Link> | <Link to="/pizza">Pizza</Link>
+                    <Link to="/">Another</Link> | <Link to="/generic">Generic</Link>
                 </div>
                 <div>
-                    <Route path="/" exact component={Users} />
-                    <Route path="/pizza" component={AsyncPizza} />
+                    <Route path="/" exact component={Another} />
+                    <Route path="/generic" component={AsyncGeneric} />
                 </div>
             </div>
         );
