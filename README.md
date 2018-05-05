@@ -1,20 +1,15 @@
-Webpack 4 Boilerplate
+Webpack 4 + React Boilerplate
 ===========
 
-[![Dependency Status](https://david-dm.org/cvgellhorn/webpack-boilerplate.svg)](https://david-dm.org/cvgellhorn/webpack-boilerplate) 
-[![devDependency Status](https://david-dm.org/cvgellhorn/webpack-boilerplate/dev-status.svg)](https://david-dm.org/cvgellhorn/webpack-boilerplate)
-
-> Plain webpack 4 boilerplate with Babel, SASS and lodash on board
+> Webpack 4 + React boilerplate with Babel, SASS and lodash on board.
 
 ## Requirements
-You only need <b>node.js</b> pre-installed and you’re good to go. 
-
-If you don’t want to work with lodash, just remove it from the node packages and the webpack config.
+Latest version of node.js. If you don't like lodash, remove it. :p
 
 ## Download
 Download in current directory
 ```sh
-$ curl -L -o master.zip https://github.com/cvgellhorn/webpack-boilerplate/archive/master.zip && unzip master.zip && rm master.zip && mv ./webpack-boilerplate-master/{.,}* ./ && rm -r ./webpack-boilerplate-master
+$ curl -L -o master.zip https://github.com/randomtu/webpack-react/archive/master.zip && unzip master.zip && rm master.zip && mv ./webpack-react-master/{.,}* ./ && rm -r ./webpack-react-master
 ```
 
 ## Setup
@@ -33,6 +28,11 @@ Build the current application
 ```sh
 $ npm run build
 ```
+
+## Credits
+Based on: https://github.com/cvgellhorn/webpack-boilerplate
+
+## Resources
 
 ## [webpack](https://webpack.js.org/)
 If you're not familiar with webpack, the [webpack-dev-server](https://webpack.js.org/configuration/dev-server/) will serve the static files in your build folder and watch your source files for changes.
