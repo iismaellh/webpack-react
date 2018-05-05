@@ -8,7 +8,8 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=dev webpack-dev-server --progress --mode development --config webpack.config.dev.js",
     "build": "webpack --progress --mode production --config webpack.config.build.js",
-    "heroku-postbuild": "webpack --progress --mode production --config webpack.config.build.js"
+    "heroku-postbuild": "webpack --progress --mode production --config webpack.config.build.js",
+    "start": "node ./src/index.js"
   },
   "repository": {
     "type": "git",
