@@ -1,8 +1,9 @@
 const path = require('path')
-const webpack = requie('webpack');
+const webpack = require('webpack');
 const merge = require('webpack-merge');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const webpackConfig = require('./webpack.config');
+const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
 
 module.exports = merge(webpackConfig, {
 
@@ -13,9 +14,20 @@ module.exports = merge(webpackConfig, {
         filename: '[name].[chunkhash].js'
     },
 
+    optimization: {
+    minimizer: [
+        new UglifyJSPlugin({
+                uglifyOptions: {
+                    mangle: {
+                        keep_fnames: true,
+                    },
+                },
+            }),
+        ],
+    },
+
     plugins: [
-        new CleanWebpackPlugin(['dist']),
-        new webpack.optimize.UglifyJsPlugin()
+        new CleanWebpackPlugin(['dist'])
     ]
 
 });
