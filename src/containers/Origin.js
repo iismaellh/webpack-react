@@ -1,5 +1,6 @@
+
 import React, { Component } from 'react';
-import Style from "./Style.css";
+import style from "./style.css";
 
 class Origin extends Component {
     render () {

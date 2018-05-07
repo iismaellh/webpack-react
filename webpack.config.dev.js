@@ -1,14 +1,11 @@
-const merge = require('webpack-merge');
-const webpackConfig = require('./webpack.config');
+const Path = require('path');
+const Merge = require('webpack-merge');
+const WebpackConfig = require('./webpack.config');
 
-module.exports = merge(webpackConfig, {
-
-    devtool: 'eval',
-
+module.exports = Merge(WebpackConfig, {
     output: {
         pathinfo: true,
-        publicPath: '/',
+        publicPath: "/",
         filename: '[name].js'
     }
-
 });

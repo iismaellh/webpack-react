@@ -1,23 +1,19 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link, Route } from 'react-router-dom';
 
 import Origin from './containers/Origin';
-import asyncComponent from './hoc/asyncComponent';
+import Async from './containers/Async';
 
-const AsyncComponent = asyncComponent(() => {
-    return import('./containers/Async.js');
-});
-
-class App extends Component {
+class App extends React.Component {
     render () {
         return (
             <div>
                 <div>
-                    <Link to="/">Origin</Link> | <Link to="/generic">Async</Link>
+                    <Link to="/">Origin</Link> | <Link to="/async">Async</Link>
                 </div>
                 <div>
                     <Route path="/" exact component={Origin} />
-                    <Route path="/generic" component={AsyncComponent} />
+                    <Route path="/async" component={Async} />
                 </div>
             </div>
         );

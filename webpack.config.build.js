@@ -1,33 +1,15 @@
-const path = require('path')
-const webpack = require('webpack');
-const merge = require('webpack-merge');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
-const webpackConfig = require('./webpack.config');
+const Path = require('path')
+const Merge = require('webpack-merge');
+const WebpackConfig = require('./webpack.config');
 const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
 
-module.exports = merge(webpackConfig, {
-
-    devtool: 'source-map',
-
+module.exports = Merge(WebpackConfig, {
     output: {
-        path: path.join(__dirname, 'dist'),
-        filename: '[name].[chunkhash].js'
+        path: Path.resolve( __dirname, "dist" ),
+        filename: "[name].bundle.js",
     },
 
     optimization: {
-    minimizer: [
-        new UglifyJSPlugin({
-                uglifyOptions: {
-                    mangle: {
-                        keep_fnames: true,
-                    },
-                },
-            }),
-        ],
-    },
-
-    plugins: [
-        new CleanWebpackPlugin(['dist'])
-    ]
-
+        minimizer: [ new UglifyJSPlugin() ]
+    }
 });

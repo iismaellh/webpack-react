@@ -4,12 +4,13 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 
 import './index.css';
-import App from './App';
+import App from './app';
 
-const app = (
+const jsx = (
     <BrowserRouter>
         <App />
     </BrowserRouter>
 );
 
-ReactDOM.render(app, document.getElementById('root'));
+const app = document.getElementById( "app" );
+ReactDOM.hydrate( jsx, app );

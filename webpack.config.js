@@ -1,113 +1,89 @@
-const path = require('path');
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const Path = require('path');
+const Webpack = require('webpack');
+const FriendlyError = require( "friendly-errors-webpack-plugin" );
+const { BundleAnalyzerPlugin } = require( "webpack-bundle-analyzer" );
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const Autoprefixer = require('autoprefixer');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-// Is the current build a development build
-const IS_DEV = (process.env.NODE_ENV === 'dev');
+const IsDev = (process.env.NODE_ENV !== 'production');
 
-const dirNode = 'node_modules';
-const dirApp = path.join(__dirname, 'src');
-const dirAssets = path.join(__dirname, 'src/assets');
+const plugins = [
+    new FriendlyError(),
+    new ExtractTextPlugin({
+      filename: '[name].css',
+      allChunks: true
+    })
+];
 
-const appHtmlTitle = 'Webpack Boilerplate';
+if ( !IsDev ) {
+    plugins.push( new BundleAnalyzerPlugin({
+        analyzerMode: "static",
+        reportFilename: "webpack-report.html",
+        openAnalyzer: false,
+    }));
+
+    plugins.push( new Webpack.DefinePlugin({
+        IsDev: IsDev
+    }));
+
+    plugins.push( 
+        new CleanWebpackPlugin(['dist'])
+    );
+}
 
 /**
  * Webpack Configuration
  */
 module.exports = {
+    mode: IsDev ? "development" : "production",
+    context: Path.join( __dirname, "src" ),
+    devtool: IsDev ? "none" : "source-map",
     entry: {
-        vendor: [
-            'lodash'
-        ],
-        bundle: path.join(dirApp, 'index')
+        app: "./client.js",
     },
     resolve: {
-        modules: [
-            dirNode,
-            dirApp,
-            dirAssets
-        ]
+        modules: ['node_modules', Path.resolve('./src')],
+        extensions: [".js", ".json", ".css"]
     },
-    plugins: [
-        new webpack.DefinePlugin({
-            IS_DEV: IS_DEV
-        }),
-
-        // old html template
-        new HtmlWebpackPlugin({
-            template: path.join(__dirname, 'src/index.html'),
-            title: appHtmlTitle
-        })
-
-        // convert to ejs
-        // new HtmlWebpackPlugin({
-        //     template: path.join(__dirname, 'src/index.html'),
-        //     minify: {
-        //         removeComments: true,
-        //         collapseWhitespace: true,
-        //         removeAttributeQuotes: true
-        //     },
-        //     chunksSortMode: 'dependency'
-        // })
-    ],
     module: {
         rules: [
             // BABEL
             {
                 test: /\.js$/,
                 loader: 'babel-loader',
-                exclude: /(node_modules)/,
+                exclude: /(node_modules|bower_components)/,
                 options: {
                     compact: true
                 }
             },
 
-            // STYLES
+            // CSS 
             {
                 test: /\.css$/,
+                exclude: /node_modules/,
+                include: /src/,
                 use: [
-                    'style-loader',
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            sourceMap: IS_DEV
-                        }
+                    { 
+                        loader: 'style-loader' 
                     },
-                ]
-            },
-
-            // CSS / SASS
-            {
-                test: /\.scss/,
-                use: [
-                    'style-loader',
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            sourceMap: IS_DEV
-                        }
-                    },
-                    {
-                        loader: 'sass-loader',
-                        options: {
-                            sourceMap: IS_DEV,
-                            includePaths: [dirAssets]
-                        }
+                    { 
+                        loader: 'css-loader' 
                     },
                     { 
                         loader: 'postcss-loader',
                         options: {
                             ident: 'postcss',
                             plugins: () => [
-                                autoprefixer({
+                                Autoprefixer({
                                     browsers: [
-                                       "> 1%",
-                                       "last 2 versions"
+                                    "> 1%",
+                                    "last 2 versions"
                                     ]
                                 })
                             ]
                         }
-                     }
+                    }
                 ]
             },
 
@@ -119,18 +95,7 @@ module.exports = {
                     name: '[path][name].[ext]'
                 }
             },
-
-            // HTML
-            {
-                test: /\.html$/,
-                exclude: [/node_modules/, require.resolve('./src/index.html')],
-                use: {
-                    loader: 'file-loader',
-                    query: {
-                        name: '[name].[ext]'
-                    },
-                }
-            }
         ]
-    }
+    },
+    plugins
 };
