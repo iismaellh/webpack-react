@@ -58,6 +58,21 @@ module.exports = {
                 }
             },
 
+            {
+                test: /\.css$/,
+                loader: ExtractTextPlugin.extract({
+                    loader: [
+                        {
+                        loader: 'css-loader',
+                        query: {
+                            localIdentName: '[hash:8]',
+                            modules: true
+                        }
+                        }
+                    ]
+                })
+            },
+
             // CSS 
             {
                 test: /\.css$/,
